@@ -1,0 +1,77 @@
+" Set the color scheme. Scheme exists in ~/.vim/colors/
+set background=dark
+colorscheme afterglow
+" Enable syntax highlighting.
+syntax on
+" Smart colorcolumn. Only highlight 81st character.
+highlight ColorColumn ctermbg=DarkCyan
+call matchadd('ColorColumn', '\%81v', 100)
+" ignorecase
+set ignorecase
+" The use of smartindent is deprecated.
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+" Setting nu and rnu turns on a hybrid line numbering system.
+set number
+set relativenumber
+" Turn on column number in status bar.
+set ruler
+" Highlight what you are searching
+set hlsearch
+" Incremental search. Search as you type. Not after enter.
+set incsearch
+" Backspace was misbehaving. This seems to fix it.
+set backspace=indent,eol,start
+" Choose to hide a buffer instead of closing it on :edit.
+set hidden
+" Map escape to jk.
+inoremap jk <Esc>`^
+" Splitting stuff. These feel right.
+set splitbelow
+set splitright
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"=============================================================================
+"                     Using vim-plug to manage our plugins                    
+"=============================================================================
+call plug#begin('~/.vim/plugged')
+Plug 'vim-scripts/headerguard'
+Plug 'tpope/vim-surround'
+Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'vim-latex/vim-latex'
+"Plug 'xuhdev/vim-latex-live-preview'
+call plug#end()
+"=============================================================================
+"=============================================================================
+
+" --------------------Plugin Configurations-----------------------------------
+
+"Vim-latex configurations. IMPORTANT.
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
+
+" Vim-latex-live-preview configurations. BROKEN.
+let g:livepreview_previewer = 'mupdf'
+
+" Headerguard configurations. Add header guards to .h and .hpp files.
+autocmd BufNewFile,BufRead *.h,*.hpp HeaderguardAdd
+
+" Display airline status line all the time.
+set laststatus=2
+let g:airline_theme='luna'
+
+" Tell ctrlp what to ignore
+" let g:ctrlp_custom_ignore = {
+"  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+"  \ 'file': '\v\.(exe|class|pyc|o)$',
+"  \ 'link': 'some_bad_symbolic_links',
+"  \ }
+" ----------------------------------------------------------------------------

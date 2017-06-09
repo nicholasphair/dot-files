@@ -1,0 +1,14 @@
+# For editing use vi, not emacs.
+set editing-mode vi
+set completion-ignore-case on
+
+# --------------------------- Key Bindings ------------------------------------
+# Command mode mappings follow.
+set keymap vi-command
+Control-l: clear-screen
+"v": ""
+
+# Insert mode mappings follow.
+set keymap vi-insert
+Control-l: clear-screen
+"jk": "\e"

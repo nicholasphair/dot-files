@@ -1,0 +1,26 @@
+# Set path.
+PATH=$PATH:$HOME/bin/                  # Directory for any scripts we create.
+PATH=$PATH:$HOME/Qt/5.8/clang_64/bin   # QT.
+PATH=$PATH:/usr/local/opt/             # coreutils
+export PATH
+
+# Use vi for terminal
+set -o vi
+
+# Set aliases.
+alias cs="cd ~/School/Spring2017/"
+alias ls='ls -GFh'
+
+# Ignore these files on tab completion.
+export FIGNORE=$FIGNORE:.o:.class:.pyc
+
+# Set my default editor to vim.
+export VISUAL=vim
+export EDITOR=$VISUAL
+
+# Prettify ls command.
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# Add colors to the terminal.
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\W\[\033[m\]\$ "
+export CLICOLOR=1
