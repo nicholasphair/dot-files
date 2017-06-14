@@ -31,13 +31,18 @@ set backspace=indent,eol,start
 set hidden
 " Map escape to jk.
 inoremap jk <Esc>`^
-" Splitting stuff. These feel right.
+" On splitting hop over to the newly split window.
 set splitbelow
 set splitright
+" Convenient splitting key mappings.
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" Folding stuff
+set foldmethod=indent
+set nofoldenable
+
 
 "=============================================================================
 "                     Using vim-plug to manage our plugins                    
@@ -46,6 +51,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/headerguard'
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mephux/bro.vim'
 "Plug 'vim-latex/vim-latex'
 "Plug 'xuhdev/vim-latex-live-preview'
 call plug#end()
