@@ -10,6 +10,7 @@ set -o vi
 # Set aliases.
 alias cs="cd ~/School/Spring2017/"
 alias ls='ls -GFh'
+alias stat="stat -x"
 
 # Ignore these files on tab completion.
 export FIGNORE=$FIGNORE:.o:.class:.pyc
