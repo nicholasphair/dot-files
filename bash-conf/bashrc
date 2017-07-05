@@ -7,13 +7,13 @@ export PATH
 # Use vi for terminal
 set -o vi
 
-# Set aliases.
-alias cs="cd ~/School/Spring2017/"
-alias ls='ls -GFh'
-alias stat="stat -x"
-
 # Ignore these files on tab completion.
 export FIGNORE=$FIGNORE:.o:.class:.pyc
+
+# Define all aliases in bash_aliases.
+if [ -f $HOME/.bash_aliases ]; then
+    source $HOME/.bash_aliases;
+fi
 
 # Set my default editor to vim.
 export VISUAL=vim

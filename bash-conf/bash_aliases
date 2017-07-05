@@ -1,0 +1,3 @@
+alias cs="cd ~/School/Spring2017/"
+alias ls='ls -GFh'
+alias stat="stat -x"
