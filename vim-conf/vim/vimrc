@@ -31,6 +31,8 @@ set backspace=indent,eol,start
 set hidden
 " Map escape to jk.
 inoremap jk <Esc>`^
+" Allow for actual tabbing with shift tab.
+inoremap <S-Tab> <C-V><Tab>
 " On splitting hop over to the newly split window.
 set splitbelow
 set splitright
