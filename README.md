@@ -12,3 +12,6 @@ python3.6 setup.py
 # Or with +x permissions...
 ./setup.py
 ```
+
+Note that after you run the script you should relaunch your terminal or source
+the appropriate files for the changes to take effect.
