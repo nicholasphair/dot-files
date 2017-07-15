@@ -28,18 +28,18 @@ configs = {
 try:
     backup_dir.mkdir()
 except FileExistsError:
-   perror("Backup directory already exists. Please remove it or sepcify another.")
+   perror('Backup directory already exists. Please remove it or sepcify another.')
    exit(1)
 
 # Move existing files to the backup directory the symlink the new rc files.
-print("Preparing home directory...")
+print('Preparing home directory...')
 for conf_dir, conf in configs.items():
     for c in conf:
         rc = home/'.{}'.format(c)
         if rc.exists():
             run(['mv', str(rc), str(backup_dir)])
-            print("- Old {} has been moved to {}/".format(str(rc), str(backup_dir)))
+            print('- Old {} has been moved to {}/'.format(str(rc), str(backup_dir)))
         link = git_dir/conf_dir/c
         rc.symlink_to(link, c == 'vim')
         rc.resolve()
-        print("+ {} has been symlinked to {}/".format(str(rc), str(link)))
+        print('+ {} has been symlinked to {}/'.format(str(rc), str(link)))
