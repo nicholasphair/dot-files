@@ -22,6 +22,8 @@ export EDITOR=$VISUAL
 # Prettify ls command.
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
-# Add colors to the terminal.
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\W\[\033[m\]\$ "
+# Two line command prompt. First line is cwd. Second is typical user/host stuff.
+bold=$(tput bold); reset=$(tput sgr0)
+green=$(tput setaf 2); yellow=$(tput setaf 3); cyan=$(tput setaf 6); white=$(tput setaf 7)
+export PS1="\[$yellow\][\w]\n\[$cyan\]\u\[$white\]@\[$green\]\h:\[$white\]\$ \[$reset\]"
 export CLICOLOR=1
