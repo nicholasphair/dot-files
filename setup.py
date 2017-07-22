@@ -19,6 +19,7 @@ backup_dir = home/'.rcs'
 configs = {
     'bash-conf' : ['bashrc', 'bash_aliases', 'bash_profile',],
     'input-conf' : ['inputrc',],
+    'git-conf' : ['gitignore', 'gitconf',],
     'screen-conf' : ['screenrc',],
     'vim-conf' : ['vim',],
     'wget-conf' : ['wgetrc',],
