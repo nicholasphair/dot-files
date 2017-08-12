@@ -1,46 +1,63 @@
-#!/usr/bin/env python3.6
+#!/usr/bin/env python3
 
 '''Quick and dirty script to setup our environment.
 Author: Nick Phair
 Date: July 15, 2017
 
-Note: Uses Python 3.6 - Get with the times!
+Note: Uses Python 3.4+ - Get with the times!
 '''
 
+from argparse import ArgumentParser, FileType
 from pathlib import Path
-from subprocess import run
-from sys import stderr, exit
-from functools import partial
-perror = partial(print, file=stderr)
+from shutil import move as mv
+import logging as log
 
-home = Path.home()
-git_dir = Path.cwd()
-backup_dir = home/'.rcs'
-configs = {
-    'bash-conf' : ['bashrc', 'bash_aliases', 'bash_profile',],
-    'input-conf' : ['inputrc',],
-    'git-conf' : ['gitignore', 'gitconf',],
-    'screen-conf' : ['screenrc',],
-    'vim-conf' : ['vim',],
-    'wget-conf' : ['wgetrc',],
-}
+HOME = Path.home()
+CWD = Path.cwd()
+CONFIGS = [
+    'bashrc', 'bash_aliases', 'bash_profile',
+    'inputrc', 'gitignore', 'gitconfig',
+    'screenrc', 'vim', 'wgetrc',
+]
 
-# Ensure we have a directory to back up the users current dot files.
-try:
-    backup_dir.mkdir()
-except FileExistsError:
-   perror('Backup directory already exists. Please remove it or sepcify another.')
-   exit(1)
+def symlink(includes):
+    '''Put all the appropriate symlinks in place.'''
 
-# Move existing files to the backup directory the symlink the new rc files.
-print('Preparing home directory...')
-for conf_dir, conf in configs.items():
-    for c in conf:
-        rc = home/'.{}'.format(c)
-        if rc.exists():
-            run(['mv', str(rc), str(backup_dir)])
-            print('- Old {} has been moved to {}/'.format(str(rc), str(backup_dir)))
-        link = git_dir/conf_dir/c
-        rc.symlink_to(link, c == 'vim')
-        rc.resolve()
-        print('+ {} has been symlinked to {}/'.format(str(rc), str(link)))
+    for config in CWD.rglob('*'):
+        if config.name in CONFIGS:
+            dot_file = HOME/'.{}'.format(config.name)
+            dot_file.symlink_to(config, config.is_dir())
+            log.info(' {} has been symlinked to {}/'.format(
+                str(config), str(dot_file)))
+
+def backup(includes, backup_dir):
+    '''Move the current configs to a backup directory.'''
+
+    backup_dir.mkdir(exist_ok = True)
+    for config in HOME.glob('.*'):
+        if config.name[1:] in includes:
+            mv(str(config), str(backup_dir/config.name))
+            log.info(' {} has been backed up to the {} directory.'.format(
+                str(config), backup_dir))
+
+if __name__ == '__main__':
+    parser = ArgumentParser(
+        description = ('Configure your environment to use the config files '
+                       'in the cloned dot-files directory.'))
+    parser.add_argument(
+        '-c', '--configs', nargs = '*', default = CONFIGS,
+        type = str, metavar = 'configs', choices = CONFIGS,
+        help = 'List of config files to symlink.')
+    parser.add_argument(
+        '-b', '--backup-dir', default = HOME/'.rcs',
+        type = Path, metavar = 'backup_dir',
+        help = "Directory to backup the rc files for the current user.")
+    parser.add_argument(
+        '--log', default = 'env_setup.log', 
+        type = str, metavar = 'log',
+        help = 'Log file for the changes to the directory.')
+    args = parser.parse_args()
+
+    log.basicConfig(filename = args.log, level = log.DEBUG)
+    backup(args.configs, args.backup_dir)
+    symlink(args.configs)

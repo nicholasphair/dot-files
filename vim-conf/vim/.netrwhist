@@ -1,8 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/nphair/Sites/mysite/nicholasphair.github.io/_site'
-let g:netrw_dirhist_2='/Users/nphair/Sites/nicholasphair.github.io/_layouts'
-let g:netrw_dirhist_3='/Users/nphair/ScratchPad/bro'
-let g:netrw_dirhist_4='/Users/nphair/Sites/nicholasphair.github.io/_includes'
-let g:netrw_dirhist_5='/Users/nphair/Sites/nicholasphair.github.io/_layouts'
-let g:netrw_dirhist_6='/Users/nphair/Sites/nicholasphair.github.io/pages'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/Users/nphair/dot-files'
