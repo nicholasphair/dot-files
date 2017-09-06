@@ -1,28 +1,17 @@
-shell -$SHELL
+# Note to future self: screen on the mac does not come with 257 colors.
+# You'll have to build it from source.
+
+# Restore display when exiting new window like apps such as vim.
 altscreen on
-# Don't show start up message.
+
+# Don't show startup message and cache 30000 lines for scroll back
 startup_message off
-
-# Allow bold colors - necessary for some reason
-attrcolor b ".I"
-
-# Tell screen how to set colors. AB = background, AF=foreground
-termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-
-# Erase background with current bg color
-defbce "on"
-
-# Enable 256 color term
-term xterm-256color
-
-# Cache 30000 lines for scroll back
 defscrollback 30000
 
+# Can't seem to get clock going.
+hardstatus string '%{= kw}%-w%{+b yk}[%n %t%?(%u)%?]%{-}%+w %=%{g}%{= kG}[%{G}%H%? %1`%?%{g}]'
 hardstatus alwayslastline 
-# Very nice tabbed colored hardstatus line
-hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%{KY}%101`%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
 
-# Hide hardstatus: ctrl-a f 
+# Show hardstatus: ctrl-a F. Hide hardstatus: ctrl-a f.
 bind f eval "hardstatus ignore"
-# Show hardstatus: ctrl-a F
 bind F eval "hardstatus alwayslastline"
