@@ -44,7 +44,8 @@ nnoremap <C-H> <C-W><C-H>
 " Folding stuff
 set foldmethod=indent
 set nofoldenable
-
+" Bash-like autocompletion.
+set wildmode=longest,list,full
 
 "=============================================================================
 "                     Using vim-plug to manage our plugins                    
