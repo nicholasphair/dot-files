@@ -4,7 +4,7 @@
 Author: Nick Phair
 Date: July 15, 2017
 
-Note: Uses Python 3.4+ - Get with the times!
+Note: Uses Python 3.4+
 '''
 
 from argparse import ArgumentParser, FileType

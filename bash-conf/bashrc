@@ -1,8 +1,10 @@
 # Set path.
 PATH=$PATH:$HOME/bin/                  # Directory for any scripts we create.
 PATH=$PATH:$HOME/Qt/5.8/clang_64/bin   # QT.
-PATH=$PATH:/usr/local/opt/             # coreutils
-export PATH
+PATH=$PATH:/usr/local/opt/             # coreutils export PATH
+
+# Explicitly set TERM variable. Needed for screen to play nice with vim.
+export TERM=xterm-256color
 
 # Use vi for terminal
 set -o vi
@@ -13,11 +15,6 @@ export FIGNORE=$FIGNORE:.o:.class:.pyc
 # Define all aliases in bash_aliases.
 if [ -f $HOME/.bash_aliases ]; then
     source $HOME/.bash_aliases;
-fi
-
-# Source our user defined functions.
-if [ -f $HOME/dot-files/bash-conf/bash_functions ]; then
-    source $HOME/dot-files/bash-conf/bash_functions
 fi
 
 # Set my default editor to vim.
