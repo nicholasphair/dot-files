@@ -1,12 +1,21 @@
 # Set path.
-PATH=$PATH:$HOME/bin/                  # Directory for any scripts we create.
-PATH=$PATH:$HOME/Qt/5.8/clang_64/bin   # QT.
-PATH=$PATH:/usr/local/opt/             # coreutils export PATH
+PATH=$PATH:$HOME/bin/                        # Directory for any scripts we create.
+PATH=$PATH:/opt/Qt5.9.1/5.9.1/clang_64/bin/  # QT.
+PATH=$PATH:/usr/local/opt/                   # coreutils export PATH
+export PATH
+
+# Store bash history in one file. Not uniquely per terminal session.
+export SHELL_SESSION_HISTORY=0
+
+# Store our history files in the .history directory.
+export HISTFILE=$HOME/.history/bash_history
+export LESSHISTFILE=$HOME/.history/lesshist
 
 # Explicitly set TERM variable. Needed for screen to play nice with vim.
 export TERM=xterm-256color
 
-# Use vi for terminal
+# Use vi for bash. Note this is redundant since everything that uses
+# readline (which includes bash) is already set to use vi in our inputrc.
 set -o vi
 
 # Ignore these files on tab completion.
@@ -14,7 +23,12 @@ export FIGNORE=$FIGNORE:.o:.class:.pyc
 
 # Define all aliases in bash_aliases.
 if [ -f $HOME/.bash_aliases ]; then
-    source $HOME/.bash_aliases;
+    . $HOME/.bash_aliases;
+fi
+
+# Smart tab completions for arguments and commands.
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
 fi
 
 # Set my default editor to vim.

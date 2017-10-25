@@ -1,4 +1,4 @@
-# Note to future self: screen on the mac does not come with 257 colors.
+# Note to future self: screen on the mac does not come with 256 colors.
 # You'll have to build it from source.
 
 # Restore display when exiting new window like apps such as vim.
@@ -12,12 +12,14 @@ defscrollback 30000
 # Enables mouse scroll somehow.
 termcapinfo xterm* ti@:te@
 
-# Can't seem to get clock going.
-#hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%{KY}%101`%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
-#hardstatus string '%{= kw}%-w%{+b yk}[%n %t%?(%u)%?]%{-}%+w %=%{g}%{= kG}[%{G}%H%? %1`%?%{g}]'
+# TODO: Get a better statusline. One with a clock.
 hardstatus string '%{= kw}%-w%{+b yk}[%n %t%?(%u)%?]%{-}%+w %=%{g}%{= kG}[%{G}%H%? %1`%?%{g}]'
 hardstatus alwayslastline 
 
 # Show hardstatus: ctrl-a F. Hide hardstatus: ctrl-a f.
 bind f eval "hardstatus ignore"
 bind F eval "hardstatus alwayslastline"
+
+# Turn of the annoying screen bell.
+vbell off
+bell_msg ""

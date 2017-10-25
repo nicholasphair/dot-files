@@ -51,7 +51,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '-b', '--backup-dir', default = HOME/'.rcs',
         type = Path, metavar = 'backup_dir',
-        help = "Directory to backup the rc files for the current user.")
+        help = 'Directory to backup the rc files for the current user.')
     parser.add_argument(
         '--log', default = 'env_setup.log', 
         type = str, metavar = 'log',

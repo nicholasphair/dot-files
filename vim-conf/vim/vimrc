@@ -1,51 +1,85 @@
 " Set the color scheme. Scheme exists in ~/.vim/colors/
 set background=dark
 colorscheme afterglow
+
 " Enable syntax highlighting.
 syntax on
+
 " Smart colorcolumn. Only highlight 81st character.
 highlight ColorColumn ctermbg=DarkCyan
 call matchadd('ColorColumn', '\%81v', 100)
+
 " ignorecase
 set ignorecase
+
 " The use of smartindent is deprecated.
 filetype plugin indent on
+
 " show existing tab with 4 spaces width
 set tabstop=4
+
 " when indenting with '>', use 4 spaces width
 set shiftwidth=4
+
 " On pressing tab, insert 4 spaces
 set expandtab
+
 " Setting nu and rnu turns on a hybrid line numbering system.
 set number
 set relativenumber
+
+" A custom statusline.
+" set statusline=%f\ %=L:%l/%L\ %c\ (%p%%)
+
+" Display status line all the time.
+set laststatus=2
+
 " Turn on column number in status bar.
 set ruler
-" Highlight what you are searching
+
+" Highlight what you are searching.
 set hlsearch
+
 " Incremental search. Search as you type. Not after enter.
 set incsearch
+
 " Backspace was misbehaving. This seems to fix it.
 set backspace=indent,eol,start
+
 " Choose to hide a buffer instead of closing it on :edit.
 set hidden
+
 " Map escape to jk.
 inoremap jk <Esc>`^
+
 " Allow for actual tabbing with shift tab.
 inoremap <S-Tab> <C-V><Tab>
-" On splitting hop over to the newly split window.
+
+" Split to the right and below and hop over to the newly split window.
 set splitbelow
 set splitright
+
 " Convenient splitting key mappings.
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
 " Folding stuff
 set foldmethod=indent
 set nofoldenable
+
 " Bash-like autocompletion.
 set wildmode=longest,list,full
+
+" Store .viminfo in our history directory.
+set viminfo+=n~/.history/viminfo
+
+" Shut up the vim beeping.
+set visualbell
+
+" Highlight the current line.
+set cursorline
 
 "=============================================================================
 "                     Using vim-plug to manage our plugins                    
@@ -55,32 +89,12 @@ Plug 'vim-scripts/headerguard'
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mephux/bro.vim'
-"Plug 'vim-latex/vim-latex'
-"Plug 'xuhdev/vim-latex-live-preview'
+Plug 'bling/vim-bufferline'
 call plug#end()
 "=============================================================================
 "=============================================================================
 
 " --------------------Plugin Configurations-----------------------------------
-
-"Vim-latex configurations. IMPORTANT.
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor='latex'
-
-" Vim-latex-live-preview configurations. BROKEN.
-let g:livepreview_previewer = 'mupdf'
-
 " Headerguard configurations. Add header guards to .h and .hpp files.
 autocmd BufNewFile,BufRead *.h,*.hpp HeaderguardAdd
-
-" Display airline status line all the time.
-set laststatus=2
-let g:airline_theme='luna'
-
-" Tell ctrlp what to ignore
-" let g:ctrlp_custom_ignore = {
-"  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-"  \ 'file': '\v\.(exe|class|pyc|o)$',
-"  \ 'link': 'some_bad_symbolic_links',
-"  \ }
 " ----------------------------------------------------------------------------

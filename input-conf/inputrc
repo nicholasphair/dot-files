@@ -1,6 +1,11 @@
+# Configurations for how the Readline library works.
+
 # For editing use vi, not emacs.
 set editing-mode vi
 set completion-ignore-case on
+
+# Turn off the annoying bell.
+set bell-style none
 
 # --------------------------- Key Bindings ------------------------------------
 # Command mode mappings follow.
