@@ -1,6 +1,9 @@
 # Note to future self: screen on the mac does not come with 256 colors.
 # You'll have to build it from source.
 
+# Enable background color erase. Required for centOS.
+defbce on
+
 # Restore display when exiting new window like apps such as vim.
 # TODO: Doesn't work like it once did...
 altscreen on

@@ -1,5 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/nphair/.config'
-let g:netrw_dirhist_2='/Users/nphair/.config/fish'
-let g:netrw_dirhist_3='/usr/local/etc/bash_completion.d'
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/Users/nphair/School/Fall2017/ECE3574/projects/project2-nphair'
+let g:netrw_dirhist_2='/Users/nphair/School/Fall2017/ECE3574/projects'
+let g:netrw_dirhist_3='/Users/nphair/School/Fall2017/ECE3574/projects/project1-nphair'
+let g:netrw_dirhist_4='/Users/nphair/School/Fall2017/ECE3574/projects'
+let g:netrw_dirhist_5='/Users/nphair/School/Fall2017/ECE3574/projects/project1-nphair'
+let g:netrw_dirhist_6='/Users/nphair/.screen'
+let g:netrw_dirhist_7='/Users/nphair/ScratchPad/python/operator_overload'
+let g:netrw_dirhist_8='/Users/nphair/Sites/nicholasphair.github.io/pages'
