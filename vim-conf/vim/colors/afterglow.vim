@@ -1,1 +1,0 @@
-vim-afterglow/colors/afterglow.vim

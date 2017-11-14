@@ -1,7 +1,3 @@
-" Set the color scheme. Scheme exists in ~/.vim/colors/
-set background=dark
-colorscheme afterglow
-
 " Enable syntax highlighting.
 syntax on
 
@@ -12,7 +8,7 @@ call matchadd('ColorColumn', '\%81v', 100)
 " ignorecase
 set ignorecase
 
-" The use of smartindent is deprecated.
+" Indent based on the filetype. Uses scripts in <install_path>/indent directory
 filetype plugin indent on
 
 " show existing tab with 4 spaces width
@@ -23,6 +19,9 @@ set shiftwidth=4
 
 " On pressing tab, insert 4 spaces
 set expandtab
+
+" Used to left align public/private keywords in C++ headers.
+set cinoptions+=g0
 
 " Setting nu and rnu turns on a hybrid line numbering system.
 set number
@@ -90,9 +89,13 @@ Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mephux/bro.vim'
 Plug 'bling/vim-bufferline'
+Plug 'danilo-augusto/vim-afterglow'
 call plug#end()
 "=============================================================================
 "=============================================================================
+" We'll have to set out colorscheme after we load it's plugin.
+set background=dark
+colorscheme afterglow
 
 " --------------------Plugin Configurations-----------------------------------
 " Headerguard configurations. Add header guards to .h and .hpp files.
