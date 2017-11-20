@@ -3,6 +3,7 @@
 '''Quick and dirty script to setup our environment.
 Author: Nick Phair
 Date: July 15, 2017
+Version: v.1.0.0
 
 Note: Uses Python 3.4+
 '''

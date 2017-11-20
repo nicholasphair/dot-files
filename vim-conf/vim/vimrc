@@ -1,10 +1,6 @@
 " Enable syntax highlighting.
 syntax on
 
-" Smart colorcolumn. Only highlight 81st character.
-highlight ColorColumn ctermbg=DarkCyan
-call matchadd('ColorColumn', '\%81v', 100)
-
 " ignorecase
 set ignorecase
 
@@ -26,15 +22,6 @@ set cinoptions+=g0
 " Setting nu and rnu turns on a hybrid line numbering system.
 set number
 set relativenumber
-
-" A custom statusline.
-" set statusline=%f\ %=L:%l/%L\ %c\ (%p%%)
-
-" Display status line all the time.
-set laststatus=2
-
-" Turn on column number in status bar.
-set ruler
 
 " Highlight what you are searching.
 set hlsearch
@@ -80,6 +67,27 @@ set visualbell
 " Highlight the current line.
 set cursorline
 
+" The current version of my status bar starts here.
+function ColumnLength()
+    return col("$")
+endfunction
+
+function ColumnString()
+    return "Column:" . col(".") . "/" . col("$")
+endfunction
+
+set laststatus=2             " Always display status bar.
+set statusline=              " Clear current status bar in favor of our own.
+set statusline+=%f           " Display the file name.
+set statusline+=%=           " Set the alignment to right justified.
+set statusline+=Line:        " Line prompt
+set statusline+=%02l         " Current line number
+set statusline+=/            " \ prompt
+set statusline+=%-8L         " Total line count. Pad with 8 spaces.
+set statusline+=%#DiffDelete#                           " Red. If applicable.
+set statusline+=%{ColumnLength()>80?ColumnString():''}  " Print column string.
+set statusline+=%*                                      " Clear formatting.
+set statusline+=%{ColumnLength()>80?'':ColumnString()}  " Print column string.
 "=============================================================================
 "                     Using vim-plug to manage our plugins                    
 "=============================================================================
@@ -94,8 +102,8 @@ call plug#end()
 "=============================================================================
 "=============================================================================
 " We'll have to set out colorscheme after we load it's plugin.
-set background=dark
 colorscheme afterglow
+set background=dark
 
 " --------------------Plugin Configurations-----------------------------------
 " Headerguard configurations. Add header guards to .h and .hpp files.

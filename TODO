@@ -5,5 +5,9 @@
 to ditch python and move to a bash script.
 + Increase portability.
 + Fix screen color and statusline issues.
-+ Automaticall call pluginstall.
++ Automatically call pluginstall.
 + Update readmes.
+
+---
+This will automatically call pluginstall and quit.
+vim +silent +PlugInstall +qall
