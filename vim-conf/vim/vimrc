@@ -23,6 +23,9 @@ set cinoptions+=g0
 set number
 set relativenumber
 
+" Set nu and rnu in Explore.
+let g:netrw_bufsettings = "noma nomod nu nobl nowrap ro rnu"
+
 " Highlight what you are searching.
 set hlsearch
 

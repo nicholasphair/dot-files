@@ -1,15 +1,23 @@
-export HISTSIZE=
+
+export SPLUNK_HOME=/Applications/splunk
 
 # Set path.
 PATH=$PATH:$HOME/bin/                        # Directory for any scripts we create.
 PATH=$PATH:/opt/Qt5.9.1/5.9.1/clang_64/bin/  # QT.
+PATH=$PATH:/opt/bin
 PATH=$PATH:/usr/local/opt/                   # coreutils export PATH
+PATH=$PATH:$SPLUNK_HOME/bin
 export PATH
 
 # Store bash history in one file. Not uniquely per terminal session.
 export SHELL_SESSION_HISTORY=0
 
+export PYTHONSTARTUP=$HOME/.pythonrc
+
 # Store our history files in the .history directory.
+export HISTSIZE=
+# Ignore lines that duplicates of the previous line.
+export HISTCONTROL=ignoredups
 export HISTFILE=$HOME/.history/bash_history
 export LESSHISTFILE=$HOME/.history/lesshist
 
