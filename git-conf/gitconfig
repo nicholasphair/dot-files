@@ -1,7 +1,7 @@
 [user]
 	name = Nicholas Phair
-	email = nphair@vt.edu
-    #email = nickphair@gmail.com
+    #email = nphair@vt.edu
+    email = nickphair@gmail.com
 [core]
 	editor = vim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol

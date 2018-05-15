@@ -98,9 +98,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/headerguard'
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mephux/bro.vim'
 Plug 'bling/vim-bufferline'
 Plug 'danilo-augusto/vim-afterglow'
+" Plug 'mephux/bro.vim'
 call plug#end()
 "=============================================================================
 "=============================================================================

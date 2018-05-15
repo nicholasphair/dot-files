@@ -57,3 +57,5 @@ cyan=$(tput setaf 6);
 white=$(tput setaf 7)
 export PS1="\[$yellow\][\w]\n\[$cyan\]\u\[$white\]@\[$green\]\h:\[$white\]\$ \[$reset\]"
 export CLICOLOR=1
+
+export PATH="$PATH:"/Applications/microchip/xc32/v1.44/bin""
