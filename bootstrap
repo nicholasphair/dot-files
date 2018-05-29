@@ -40,6 +40,7 @@ build_dirs() {
   mkdir -p "/opt"
 }
 
+
 # Helper function to log to stdout and optionally a file.
 log() {
   if [ "${VERBOSE}" = true ]; then
@@ -48,6 +49,7 @@ log() {
     echo "$1" >> "${LOG}"
   fi
 }
+
 
 # Symlink our dot files.
 symlink() {
