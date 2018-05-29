@@ -1,4 +1,3 @@
-+ Update setup.py to set up our .history directory.
 + Write a function to change cd to cd;ls. and come up with a good name.
 + Set up local bash completions.
 + Add functionality to automatically grab the needed packages. Might make sense
@@ -7,6 +6,8 @@ to ditch python and move to a bash script.
 + Fix screen color and statusline issues.
 + Automatically call pluginstall.
 + Update readmes.
++ Add item2 profile
++ For mac specifics, move/remove Movies folder, move music folder elsewhere, dynamically update itunes to reflect moved folder
 
 ---
 This will automatically call pluginstall and quit.

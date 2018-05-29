@@ -1,12 +1,8 @@
-
-export SPLUNK_HOME=/Applications/splunk
-
 # Set path.
 PATH=$PATH:$HOME/bin/                        # Directory for any scripts we create.
-PATH=$PATH:/opt/Qt5.9.1/5.9.1/clang_64/bin/  # QT.
+PATH=$PATH:"$(brew --prefix)/opt/qt/bin/"               # QT.
 PATH=$PATH:/opt/bin
 PATH=$PATH:/usr/local/opt/                   # coreutils export PATH
-PATH=$PATH:$SPLUNK_HOME/bin
 export PATH
 
 # Store bash history in one file. Not uniquely per terminal session.
@@ -57,5 +53,3 @@ cyan=$(tput setaf 6);
 white=$(tput setaf 7)
 export PS1="\[$yellow\][\w]\n\[$cyan\]\u\[$white\]@\[$green\]\h:\[$white\]\$ \[$reset\]"
 export CLICOLOR=1
-
-export PATH="$PATH:"/Applications/microchip/xc32/v1.44/bin""

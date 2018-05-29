@@ -1,2 +1,3 @@
 vim-conf/vim/plugged/*
+vim-conf/vim/autoload/*
 .netrwhist

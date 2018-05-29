@@ -94,6 +94,15 @@ set statusline+=%{ColumnLength()>80?'':ColumnString()}  " Print column string.
 "=============================================================================
 "                     Using vim-plug to manage our plugins                    
 "=============================================================================
+" Grab vim-plug if its not already there.
+" Note, check the readme if we're sitting behind a proxy for what to do.
+" Note, this complains alot... just persist and everything gets set up.
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/headerguard'
 Plug 'tpope/vim-surround'

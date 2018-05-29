@@ -1,0 +1,138 @@
+#!/usr/bin/env bash
+
+# =============================================================================
+# Script to setup our environment. Making sure tools are in place is handled
+# by the individual configs themselves, not this script. For example,
+# vimrc handles installing vim-plug, and brewstrap handles installing brew.
+#
+# Author: Nick Phair 
+# Date: May 28, 2018 
+# Version: v.2.0.0
+# =============================================================================
+
+# TODO: read configs in from file
+# TODO: Platform work
+
+BACKUP_DIR="${HOME}/rcs"
+HISTORY_DIR="${HOME}/.history"
+SCRATCHPAD_DIR="${HOME}/Scratchpad"
+LOG="${HOME}/bootstrap.log"
+VERBOSE=false
+
+declare -a CONFIGS=(
+  "bash_aliases" "bash_completion" "bashrc" "bash_profile" 
+  "gitignore" "gitconfig"
+  "ideavimrc"
+  "inputrc"
+  "pythonrc"
+  "screenrc"
+  "vim"
+  "wgetrc"
+)
+
+# Build our needed directories.
+build_dirs() {
+  log "Building the required directories..."
+  mkdir -p "${BACKUP_DIR}"
+  mkdir -p "${HISTORY_DIR}"
+  mkdir -p "${SCRATCHPAD_DIR}"
+  mkdir -p "${HOME}/.bash_completion.d"
+  mkdir -p "/opt"
+}
+
+# Helper function to log to stdout and optionally a file.
+log() {
+  if [ "${VERBOSE}" = true ]; then
+    echo "$1" | tee "${LOG}"
+  else
+    echo "$1" >> "${LOG}"
+  fi
+}
+
+# Symlink our dot files.
+symlink() {
+  log "Linking to the new dot files..."
+  # The variable dot_file is the path of a file relative to the dot-files directory.
+  for dot_file in **/*; do
+    # Strip off the directory info so we can compare only the filename to our config list.
+    dot_filename="${dot_file##*/}"
+    for config in "${CONFIGS[@]}"; do
+      if [ "${dot_filename}" = "${config}" ]; then
+        ln -fhs "${PWD}/${dot_file}" "${HOME}/.${config}"
+        log "${HOME}/.${config} has been symlinked to ${PWD}/${dot_file}"
+      fi
+    done
+  done
+  # TODO: Link the message of the day. -- Can this be in home folder?
+  #ln -s "${PWD}/misc-conf/motd" "/etc/motd"
+}
+
+
+# Back up any existing dot files.
+backup() {
+  log "Backing up current dot files..."
+  for config in "${CONFIGS[@]}"; do
+    dot_file="${HOME}/.${config}"
+    # Be defensive, check for existence or use -L to check for dead symlinks.
+    # TODO: handle, identical file case.
+    if [ -e "${dot_file}" -o -L "${dot_file}" ]; then
+      mv "${dot_file}" "${BACKUP_DIR}"
+      log "The current version of ${dot_file} has been backed up to the ${BACKUP_DIR} directory."
+    fi
+  done
+}
+
+
+# Call the script to build brew, tap the caskroom, and fetch our packages.
+build_brew() {
+    sh "${PWD}/brew-conf/brewstrap"
+}
+
+
+# Execute the build tasks.
+build_environment() {
+    build_brew
+    build_dirs
+    backup
+    symlink
+    # Launch a new shell with our configs.
+    bash
+}
+
+
+# Display a useful help message.
+usage() { 
+  echo "usage: ${0} [-hv] [-b <backup directory>] [-g <history directory>]"
+}
+
+
+# Parse the args.
+# -h is used for help, use the next letter g, for history.
+while getopts ":b:hg:v" opt; do
+  case ${opt} in
+    b )
+      BACKUP_DIR="${HOME}/${OPTARG}"
+      ;;
+    g )
+      HISTORY_DIR="${HOME}/${OPTARG}"
+      ;;
+    h )
+      usage
+      exit 0
+      ;;
+    v )
+      VERBOSE=true
+      ;;
+    \? )
+      usage
+      exit 1
+      ;;
+    : )
+      usage
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
+build_environment
