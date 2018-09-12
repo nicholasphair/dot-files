@@ -60,7 +60,9 @@ symlink() {
     dot_filename="${dot_file##*/}"
     for config in "${CONFIGS[@]}"; do
       if [ "${dot_filename}" = "${config}" ]; then
-        ln -fhs "${PWD}/${dot_file}" "${HOME}/.${config}"
+        ln -fs "${PWD}/${dot_file}" "${HOME}/.${config}"
+	# TODO: ln -h apparently not available on ubunut...
+        #ln -fhs "${PWD}/${dot_file}" "${HOME}/.${config}"
         log "${HOME}/.${config} has been symlinked to ${PWD}/${dot_file}"
       fi
     done
@@ -93,7 +95,7 @@ build_brew() {
 
 # Execute the build tasks.
 build_environment() {
-    build_brew
+    #build_brew
     build_dirs
     backup
     symlink

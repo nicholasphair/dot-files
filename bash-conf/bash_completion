@@ -1,3 +1,288 @@
 for bcfile in $HOME/.bash_completion.d/* ; do
   [ -f "${bcfile}" ] && . $bcfile
 done
+_geomesa(){
+  local cur prev;
+  COMPREPLY=();
+  cur="${COMP_WORDS[COMP_CWORD]}";
+  prev="${COMP_WORDS[COMP_CWORD-1]}";
+
+  if [[ "${COMP_WORDS[1]}" == "help" ]]; then
+    COMPREPLY=( $(compgen -W "configure-age-off create-schema delete-catalog delete-features configure-stats add-attribute-index delete-raster describe-schema env explain export help ingest ingest-raster keywords get-type-names remove-schema configure-table version-remote version get-sft-config gen-avro-schema stats-analyze stats-bounds stats-count stats-top-k stats-histogram add-index convert configure classpath scala-console" ${cur}));
+    return 0;
+  fi;
+
+  case ${COMP_CWORD} in
+    1)
+      COMPREPLY=( $(compgen -W "configure-age-off create-schema delete-catalog delete-features configure-stats add-attribute-index delete-raster describe-schema env explain export help ingest ingest-raster keywords get-type-names remove-schema configure-table version-remote version get-sft-config gen-avro-schema stats-analyze stats-bounds stats-count stats-top-k stats-histogram add-index convert configure classpath scala-console" ${cur}));
+      ;;
+    [2-9] | [1-9][0-9])
+      if [[ "${cur}" =~ ^-[a-zA-Z-]?+$ ]]; then
+        case ${COMP_WORDS[1]} in
+                    configure-age-off)
+              COMPREPLY=( $(compgen -W "--feature-name --catalog --visibilities --expiry --password --mock --list --auths --dtg --instance --remove --zookeepers --set --user --keytab" -- ${cur}));
+              return 0;
+              ;;
+                  create-schema)
+              COMPREPLY=( $(compgen -W "--spec --instance --auths --feature-name --user --use-shared-tables --dtg --catalog --keytab --password --visibilities --zookeepers --mock" -- ${cur}));
+              return 0;
+              ;;
+                  delete-catalog)
+              COMPREPLY=( $(compgen -W "--password --zookeepers --keytab --user --auths --catalog --visibilities --force --instance --mock" -- ${cur}));
+              return 0;
+              ;;
+                  delete-features)
+              COMPREPLY=( $(compgen -W "--zookeepers --visibilities --mock --auths --user --keytab --catalog --feature-name --password --instance --cql" -- ${cur}));
+              return 0;
+              ;;
+                  configure-stats)
+              COMPREPLY=( $(compgen -W "--visibilities --add --auths --user --instance --mock --remove --zookeepers --keytab --password --catalog --list" -- ${cur}));
+              return 0;
+              ;;
+                  add-attribute-index)
+              COMPREPLY=( $(compgen -W "--zookeepers --catalog --user --password --auths --visibilities --instance --mock --feature-name --attributes --keytab --coverage" -- ${cur}));
+              return 0;
+              ;;
+                  delete-raster)
+              COMPREPLY=( $(compgen -W "--mock --raster-table --zookeepers --user --instance --keytab --visibilities --password --auths --force" -- ${cur}));
+              return 0;
+              ;;
+                  describe-schema)
+              COMPREPLY=( $(compgen -W "--auths --user --password --catalog --visibilities --instance --keytab --feature-name --zookeepers --mock" -- ${cur}));
+              return 0;
+              ;;
+                  env)
+              COMPREPLY=( $(compgen -W "--concise --converters --list-sfts --describe-sfts --exclude-user-data --format --sfts --list-converters --describe-converters" -- ${cur}));
+              return 0;
+              ;;
+                  explain)
+              COMPREPLY=( $(compgen -W "--visibilities --auths --feature-name --password --catalog --hints --mock --cql --zookeepers --user --keytab --index --instance --attributes" -- ${cur}));
+              return 0;
+              ;;
+                  export)
+              COMPREPLY=( $(compgen -W "--output-format --keytab --instance --output --index --catalog --visibilities --mock --gzip --zookeepers --attributes --auths --hints --max-features --user --password --feature-name --no-header --cql" -- ${cur}));
+              return 0;
+              ;;
+                  help)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  ingest)
+              COMPREPLY=( $(compgen -W "--input-format --user --spec --converter --visibilities --zookeepers --auths --catalog --mock --instance --threads --run-mode --feature-name --password --keytab" -- ${cur}));
+              return 0;
+              ;;
+                  ingest-raster)
+              COMPREPLY=( $(compgen -W "--zookeepers --write-memory --file --parallel-level --keytab --password --auths --format --user --query-threads --raster-table --visibilities --timestamp --write-threads --instance --mock" -- ${cur}));
+              return 0;
+              ;;
+                  keywords)
+              COMPREPLY=( $(compgen -W "--feature-name --mock --list --password --remove --catalog --visibilities --add --removeAll --instance --user --auths --zookeepers --keytab" -- ${cur}));
+              return 0;
+              ;;
+                  get-type-names)
+              COMPREPLY=( $(compgen -W "--visibilities --mock --password --zookeepers --catalog --keytab --instance --user --auths" -- ${cur}));
+              return 0;
+              ;;
+                  remove-schema)
+              COMPREPLY=( $(compgen -W "--keytab --force --visibilities --mock --auths --user --instance --catalog --zookeepers --pattern --feature-name --password" -- ${cur}));
+              return 0;
+              ;;
+                  configure-table)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  version-remote)
+              COMPREPLY=( $(compgen -W "--keytab --visibilities --catalog --zookeepers --user --password --auths --mock --instance" -- ${cur}));
+              return 0;
+              ;;
+                  version)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  get-sft-config)
+              COMPREPLY=( $(compgen -W "--exclude-user-data --feature-name --auths --concise --visibilities --password --format --instance --zookeepers --catalog --keytab --user --mock" -- ${cur}));
+              return 0;
+              ;;
+                  gen-avro-schema)
+              COMPREPLY=( $(compgen -W "--feature-name --spec" -- ${cur}));
+              return 0;
+              ;;
+                  stats-analyze)
+              COMPREPLY=( $(compgen -W "--catalog --visibilities --password --auths --user --instance --keytab --zookeepers --mock --feature-name" -- ${cur}));
+              return 0;
+              ;;
+                  stats-bounds)
+              COMPREPLY=( $(compgen -W "--mock --attributes --cql --password --feature-name --user --catalog --keytab --no-cache --auths --zookeepers --visibilities --instance" -- ${cur}));
+              return 0;
+              ;;
+                  stats-count)
+              COMPREPLY=( $(compgen -W "--mock --cql --password --catalog --feature-name --user --zookeepers --no-cache --instance --visibilities --auths --keytab" -- ${cur}));
+              return 0;
+              ;;
+                  stats-top-k)
+              COMPREPLY=( $(compgen -W "--mock --password --cql --feature-name --user --keytab --auths --visibilities --zookeepers --catalog --instance --no-cache --attributes" -- ${cur}));
+              return 0;
+              ;;
+                  stats-histogram)
+              COMPREPLY=( $(compgen -W "--keytab --catalog --attributes --no-cache --visibilities --auths --instance --cql --mock --zookeepers --feature-name --password --bins --user" -- ${cur}));
+              return 0;
+              ;;
+                  add-index)
+              COMPREPLY=( $(compgen -W "--index --user --auths --keytab --catalog --feature-name --cql --password --visibilities --instance --zookeepers --mock --no-back-fill" -- ${cur}));
+              return 0;
+              ;;
+                  convert)
+              COMPREPLY=( $(compgen -W "--max-features --cql --output-format --no-header --converter --output --gzip --feature-name --spec --hints" -- ${cur}));
+              return 0;
+              ;;
+                  configure)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  classpath)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  scala-console)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+              esac;
+      else
+        compopt -o filenames -o nospace;
+        COMPREPLY=( $(compgen -f "$2") );
+      fi;
+      return 0;
+      ;;
+    *)
+      COMPREPLY=();
+      ;;
+  esac;
+};
+complete -F _geomesa geomesa;
+complete -F _geomesa bin/geomesa;
+
+
+       _geomesa-fs(){
+  local cur prev;
+  COMPREPLY=();
+  cur="${COMP_WORDS[COMP_CWORD]}";
+  prev="${COMP_WORDS[COMP_CWORD-1]}";
+
+  if [[ "${COMP_WORDS[1]}" == "help" ]]; then
+    COMPREPLY=( $(compgen -W "create-schema describe-schema env export help ingest get-type-names version get-sft-config gen-avro-schema convert update-metadata classpath configure scala-console compact get-partitions get-files stats-bounds stats-count stats-histogram stats-top-k" ${cur}));
+    return 0;
+  fi;
+
+  case ${COMP_CWORD} in
+    1)
+      COMPREPLY=( $(compgen -W "create-schema describe-schema env export help ingest get-type-names version get-sft-config gen-avro-schema convert update-metadata classpath configure scala-console compact get-partitions get-files stats-bounds stats-count stats-histogram stats-top-k" ${cur}));
+      ;;
+    [2-9] | [1-9][0-9])
+      if [[ "${cur}" =~ ^-[a-zA-Z-]?+$ ]]; then
+        case ${COMP_WORDS[1]} in
+                    create-schema)
+              COMPREPLY=( $(compgen -W "--storage-opt --leaf-storage --dtg --spec --feature-name --path --use-shared-tables --config --partition-scheme --encoding" -- ${cur}));
+              return 0;
+              ;;
+                  describe-schema)
+              COMPREPLY=( $(compgen -W "--feature-name --path --config" -- ${cur}));
+              return 0;
+              ;;
+                  env)
+              COMPREPLY=( $(compgen -W "--concise --converters --list-sfts --describe-sfts --exclude-user-data --format --sfts --list-converters --describe-converters" -- ${cur}));
+              return 0;
+              ;;
+                  export)
+              COMPREPLY=( $(compgen -W "--max-features --feature-name --no-header --cql --hints --query-threads --gzip --path --output-format --attributes --output --config" -- ${cur}));
+              return 0;
+              ;;
+                  help)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  ingest)
+              COMPREPLY=( $(compgen -W "--converter --spec --temp-path --partition-scheme --encoding --config --path --feature-name --storage-opt --run-mode --input-format --num-reducers --threads --leaf-storage" -- ${cur}));
+              return 0;
+              ;;
+                  get-type-names)
+              COMPREPLY=( $(compgen -W "--config --path" -- ${cur}));
+              return 0;
+              ;;
+                  version)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  get-sft-config)
+              COMPREPLY=( $(compgen -W "--exclude-user-data --path --concise --format --config --feature-name" -- ${cur}));
+              return 0;
+              ;;
+                  gen-avro-schema)
+              COMPREPLY=( $(compgen -W "--feature-name --spec" -- ${cur}));
+              return 0;
+              ;;
+                  convert)
+              COMPREPLY=( $(compgen -W "--max-features --cql --output-format --no-header --converter --output --gzip --feature-name --spec --hints" -- ${cur}));
+              return 0;
+              ;;
+                  update-metadata)
+              COMPREPLY=( $(compgen -W "--path --feature-name --config" -- ${cur}));
+              return 0;
+              ;;
+                  classpath)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  configure)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  scala-console)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  compact)
+              COMPREPLY=( $(compgen -W "--partitions --config --path --feature-name --temp-path --run-mode" -- ${cur}));
+              return 0;
+              ;;
+                  get-partitions)
+              COMPREPLY=( $(compgen -W "--path --config --feature-name" -- ${cur}));
+              return 0;
+              ;;
+                  get-files)
+              COMPREPLY=( $(compgen -W "--config --partitions --feature-name --path" -- ${cur}));
+              return 0;
+              ;;
+                  stats-bounds)
+              COMPREPLY=( $(compgen -W "--config --attributes --path --no-cache --feature-name --cql" -- ${cur}));
+              return 0;
+              ;;
+                  stats-count)
+              COMPREPLY=( $(compgen -W "--feature-name --config --no-cache --cql --path" -- ${cur}));
+              return 0;
+              ;;
+                  stats-histogram)
+              COMPREPLY=( $(compgen -W "--feature-name --no-cache --path --config --bins --attributes --cql" -- ${cur}));
+              return 0;
+              ;;
+                  stats-top-k)
+              COMPREPLY=( $(compgen -W "--cql --path --feature-name --config --attributes --no-cache" -- ${cur}));
+              return 0;
+              ;;
+              esac;
+      else
+        compopt -o filenames -o nospace;
+        COMPREPLY=( $(compgen -f "$2") );
+      fi;
+      return 0;
+      ;;
+    *)
+      COMPREPLY=();
+      ;;
+  esac;
+};
+complete -F _geomesa-fs geomesa-fs;
+complete -F _geomesa-fs bin/geomesa-fs;
+
+
+       

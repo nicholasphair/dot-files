@@ -1,9 +1,11 @@
 # Set path.
-PATH=$PATH:$HOME/bin/                        # Directory for any scripts we create.
-PATH=$PATH:"$(brew --prefix)/opt/qt/bin/"               # QT.
+PATH=$HOME/bin/:$PATH    # Directory for any scripts we create.
 PATH=$PATH:/opt/bin
-PATH=$PATH:/usr/local/opt/                   # coreutils export PATH
+PATH=$PATH:/usr/local/opt/    # coreutils export PATH
 export PATH
+
+#GIT_PROMPT_ONLY_IN_REPO=1
+#source ~/.bash-git-prompt/gitprompt.sh
 
 # Store bash history in one file. Not uniquely per terminal session.
 export SHELL_SESSION_HISTORY=0
@@ -32,9 +34,19 @@ if [ -f $HOME/.bash_aliases ]; then
     . $HOME/.bash_aliases;
 fi
 
-# Smart tab completions for arguments and commands.
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+if [ -f $HOME/.bash_functions ]; then
+    . $HOME/.bash_functions;
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
 fi
 
 # Set my default editor to vim.
