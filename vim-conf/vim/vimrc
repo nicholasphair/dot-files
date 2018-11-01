@@ -11,7 +11,7 @@ filetype plugin indent on
 set tabstop=4
 
 " when indenting with '>', use 4 spaces width
-set shiftwidth=4
+set shiftwidth=2
 
 " On pressing tab, insert 4 spaces
 set expandtab
@@ -38,6 +38,10 @@ set backspace=indent,eol,start
 " Choose to hide a buffer instead of closing it on :edit.
 set hidden
 
+" Autosign our `TODO's`
+inoreabbrev TODO: TODO (nphair):
+inoreabbrev NOTE: NOTE (nphair):
+
 " Map escape to jk.
 inoremap jk <Esc>`^
 
@@ -45,6 +49,11 @@ inoremap jk <Esc>`^
 " inoremap <S-Tab> <C-V><Tab>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+
+" Map capital versions to eol (no \n) included.
+nnoremap C c$
+nnoremap D d$
+nnoremap Y y$
 
 " Autocomplete comments
 set formatoptions+=r
@@ -67,7 +76,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Folding stuff
-set foldmethod=indent
+" set foldmethod=indent
 set nofoldenable
 
 " Bash-like autocompletion.
@@ -81,6 +90,20 @@ set visualbell
 
 " Highlight the current line.
 set cursorline
+
+" Twiddle case
+function! TwiddleCase(str)
+  if a:str ==# toupper(a:str)
+    let result = tolower(a:str)
+  elseif a:str ==# tolower(a:str)
+    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+  else
+    let result = toupper(a:str)
+  endif
+  return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+
 
 " The current version of my status bar starts here.
 function ColumnLength()
@@ -127,6 +150,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-bufferline'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'mephux/bro.vim'
+Plug 'kshenoy/vim-signature'
 call plug#end()
 "=============================================================================
 "=============================================================================
