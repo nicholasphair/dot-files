@@ -2,3 +2,5 @@
 [[ -s ~/.bashrc ]] && source ~/.bashrc
 
 export PATH="$PATH:"/Applications/microchip/xc32/v1.44/bin""
+
+export PATH="$HOME/.cargo/bin:$PATH"

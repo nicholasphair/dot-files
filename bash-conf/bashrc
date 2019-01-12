@@ -3,6 +3,7 @@ PATH=$PATH:$HOME/bin/                        # Directory for any scripts we crea
 PATH=$PATH:"$(brew --prefix)/opt/qt/bin/"               # QT.
 PATH=$PATH:/opt/bin
 PATH=$PATH:/usr/local/opt/                   # coreutils export PATH
+PATH=$PATH:~/.cargo/bin
 export PATH
 
 # Store bash history in one file. Not uniquely per terminal session.
