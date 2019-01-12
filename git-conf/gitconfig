@@ -1,7 +1,6 @@
 [user]
-	name = Nicholas Phair
-    #email = nphair@vt.edu
-    email = nickphair@gmail.com
+	name = Nick Phair
+	email = nicholas.phair@ccri.com
 [core]
 	editor = vim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
@@ -26,3 +25,10 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[push]
+	default = nothing
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout

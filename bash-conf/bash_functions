@@ -1,21 +1,58 @@
-pushd() {
-  if [ $# -eq 0 ]; then
-    DIR="${HOME}"
-  else
-    DIR="$1"
-  fi
-
-  builtin pushd "${DIR}" > /dev/null
+startvm() {
+    vboxmanage startvm ubuntu --type headless
 }
 
-pushd_builtin() {
-  builtin pushd > /dev/null
+entervm() {
+    startvm
+    #ssh vbox
 }
 
-popd() {
-  builtin popd > /dev/null
+stopvm() {
+    vboxmanage controlvm ubuntu poweroff
 }
 
-alias cd='pushd'
-alias back='popd'
-alias flip='pushd_builtin'
+pausevm() {
+    vboxmanage controlvm ubuntu pause 
+}
+
+resumevm() {
+    vboxmanage controlvm ubuntu resume
+}
+
+savevm() {
+    vboxmanage controlvm ubuntu savestate
+}
+
+docker-exec-mru() {
+    docker ps -a | head -2 | tail -1 | awk '{ print $1 }' | xargs -o -I{} docker exec -it {} /bin/bash
+}
+
+docker-rm-mru() {
+    docker ps -a | head -2 | tail -1 | awk '{ print $1 }' | xargs -I{} docker rm {}
+}
+
+
+
+#pushd() {
+#  echo "my func"
+#  if [ $# -eq 0 ]; then
+#    DIR="${HOME}"
+#  else
+#    DIR="$1"
+#  fi
+#
+#  builtin pushd "${DIR}" > /dev/null
+#}
+#
+#pushd_builtin() {
+#  builtin pushd > /dev/null
+#}
+#
+#popd() {
+#  builtin popd > /dev/null
+#}
+#
+#
+#alias cd='pushd'
+#alias back='popd'
+#alias flip='pushd_builtin'

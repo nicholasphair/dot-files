@@ -11,9 +11,11 @@ set bell-style none
 # Command mode mappings follow.
 set keymap vi-command
 Control-l: clear-screen
+";;": clear-screen
 "v": ""
 
 # Insert mode mappings follow.
 set keymap vi-insert
 Control-l: clear-screen
+";;": clear-screen
 "jk": "\e"

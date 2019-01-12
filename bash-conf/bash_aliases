@@ -1,6 +1,6 @@
 alias py="python"
 alias py3="python3"
-alias cs="cd ~/School/Spring2018/"
 alias ls='ls -GFh'
 alias stat="stat -x"
 alias dirs="dirs -v -l"
+alias xclip="xclip -selection c"
