@@ -89,18 +89,18 @@ backup() {
 
 # Call the script to build brew, tap the caskroom, and fetch our packages.
 build_brew() {
-    sh "${PWD}/brew-conf/brewstrap"
+  ./"${PWD}/brew-conf/brewstrap"
 }
 
 
 # Execute the build tasks.
 build_environment() {
-    #build_brew
-    build_dirs
-    backup
-    symlink
-    # Launch a new shell with our configs.
-    bash
+   #build_brew
+   build_dirs
+   backup
+   symlink
+   # Launch a new shell with our configs.
+   bash
 }
 
 

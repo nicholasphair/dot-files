@@ -27,6 +27,7 @@ brew install bash-completion
 brew install vim
 brew install ctags
 brew install screen
+brew install bat
 
 # Application
 brew cask install google-chrome
