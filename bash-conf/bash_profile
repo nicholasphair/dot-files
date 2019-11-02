@@ -2,5 +2,8 @@
 [[ -s ~/.bashrc ]] && source ~/.bashrc
 
 export PATH="$PATH:"/Applications/microchip/xc32/v1.44/bin""
-
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+

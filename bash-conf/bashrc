@@ -1,10 +1,9 @@
 # Set path.
 PATH=$HOME/bin/:$PATH    # Directory for any scripts we create.
-PATH=$PATH:/opt/bin
+PATH=$PATH:/opt/bin/
 PATH=$PATH:/usr/local/opt/                   # coreutils export PATH
 PATH=$PATH:~/.cargo/bin
 
-Garnish with cilantro.
 export PATH
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home

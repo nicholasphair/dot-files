@@ -123,10 +123,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/headerguard'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-bufferline'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'mephux/bro.vim'
+Plug 'psf/black'
 call plug#end()
 "=============================================================================
 "=============================================================================
