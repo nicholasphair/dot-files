@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+# TODO (nphair): add configs switchy
+
+declare -ra EXTENSIONS=(
+  "https://github.com/mozilla/multi-account-containers/releases/download/6.1.1/firefox_multi_account_containers-6.1.1-fx.xpi"
+  "https://github.com/FelisCatus/SwitchyOmega/releases/download/v2.5.20/proxy_switchyomega-2.5.20-an+fx.xpi"
+  "https://github.com/gorhill/uBlock/releases/download/1.24.0/uBlock0_1.24.0.firefox.xpi"
+  #"https://addons.mozilla.org/firefox/downloads/file/3393056/open_external_links_in_a_container-1.0.2-fx.xpi"
+)
+declare -r XPI_ID_FILE='manifest.json'
+declare -r XPI_ID_JSONPATH='.. | .gecko?.id | select(.)'
+declare -r CONTAINERS_CONFIG_FILE='MultiAccountContainers/containers.json'
+
+
+configure_multi_account_containers() {
+  cp "$CONTAINERS_CONFIG_FILE" "${ff_ext_dir}/"
+}
+
+
+configure_extensions() {
+  configure_multi_account_containers
+}
+
+
+get_extension_id() {
+  local xpi="$1"
+  unzip -p "${xpi}" "${XPI_ID_FILE}" | jq -r "${XPI_ID_JSONPATH}"
+}
+
+
+add_extension() {
+  local xpi_url="$1"
+  local xpi_file="$(basename ${xpi_url})"
+  wget "${xpi_url}"
+  local id="$(get_extension_id ${xpi_file})"
+  mv "${xpi_file}" "${ff_ext_dir}/${id}.xpi"
+}
+
+
+add_extensions() {
+  local temp="$(mktemp -d)"
+  pushd "${temp}"
+  for extension in "${EXTENSIONS[@]}"; do
+    add_extension "${extension}"
+  done
+  popd
+  rm -rf "${temp}"
+}
+
+
+bootstrap_ubuntu() {
+  if [ -z "$(dpkg -l firefox | grep firefox)" ]; then
+    sudo apt install firefox
+  fi
+}
+
+
+bootstrap_linux() {
+  # TODO (nphair): /etc/os-release for distro.
+  bootstrap_ubuntu
+}
+
+
+bootstrap_mac() {
+  if [ -z "$(brew cask list -1 | grep firefox)" ]; then
+    brew cask install firefox
+  fi
+}
+
+
+bootstrap() {
+  local unameOut="$(uname -s)"
+  case "${unameOut}" in
+    Linux*)
+      bootstrap_linux;;
+    Darwin*)
+      bootstrap_mac;;
+    *)
+      echo "Script has not been implemented for: ${unameOut}."
+      exit 1
+      ;;
+  esac
+  ff_ext_dir="$(find ${HOME} -ipath '*/firefox/*/extensions' 2>/dev/null)"
+}
+
+
+bootstrap
+add_extensions
+configure_extensions
