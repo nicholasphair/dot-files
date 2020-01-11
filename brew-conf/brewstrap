@@ -8,6 +8,7 @@ echo "Installing brew..."
 
 echo "Installing brew cask..."
 brew tap caskroom/cask
+brew tap aws/tap
 
 # Programming Languages
 brew cask install java
@@ -17,24 +18,26 @@ brew install qt
 # Python and Python Modules
 brew install python
 brew install python3
-pip3 install requests
-pip install requests
+# TODO: not the place 
+# pip3 install requests
+# pip install requests
 
-#Dev Tools
+# Dev Tools.
 brew install git
 brew install pandoc
 brew install bash-completion
 brew install vim
 brew install ctags
-brew install screen
+brew install tmux
 brew install bat
+brew install jq
+brew xmlstarlet
+brew install aws-sam-cli
 
-# Application
+# Application.
 brew cask install google-chrome
-brew cask install firefox
 brew cask install dashlane
 brew cask install spectacle
 brew cask install xquartz
 brew cask install amazon-music
 brew cask install vlc
-
