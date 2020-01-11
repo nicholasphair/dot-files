@@ -7,11 +7,12 @@ set ignorecase
 " Indent based on the filetype. Uses scripts in <install_path>/indent directory
 filetype plugin indent on
 
-" show existing tab with 4 spaces width
+" Show existing tab with 4 spaces width
 set tabstop=4
 
-" when indenting with '>', use 4 spaces width
-set shiftwidth=4
+" Shift with 2 spaces except for in python.
+set shiftwidth=2
+autocmd BufNewFile,BufRead *.py set shiftwidth=4
 
 " On pressing tab, insert 4 spaces
 set expandtab
@@ -82,27 +83,9 @@ set visualbell
 " Highlight the current line.
 set cursorline
 
-" The current version of my status bar starts here.
-function ColumnLength()
-    return col("$")
-endfunction
-
-function ColumnString()
-    return "Column:" . col(".") . "/" . col("$")
-endfunction
-
-" set laststatus=2             " Always display status bar.
-" set statusline=              " Clear current status bar in favor of our own.
-" set statusline+=%f           " Display the file name.
-" set statusline+=%=           " Set the alignment to right justified.
-" set statusline+=Line:        " Line prompt
-" set statusline+=%02l         " Current line number
-" set statusline+=/            " \ prompt
-" set statusline+=%-8L         " Total line count. Pad with 8 spaces.
-" set statusline+=%#DiffDelete#                           " Red. If applicable.
-" set statusline+=%{ColumnLength()>80?ColumnString():''}  " Print column string.
-" set statusline+=%*                                      " Clear formatting.
-" set statusline+=%{ColumnLength()>80?'':ColumnString()}  " Print column string.
+" Sign our todos and notes.
+ab TODO: TODO: (nphair)
+ab NOTE: NOTE: (nphair)
 "=============================================================================
 "                     Using vim-plug to manage our plugins                    
 "=============================================================================
@@ -116,19 +99,14 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'JuliaEditorSupport/julia-vim'
 Plug 'gabrielelana/vim-markdown'
-"Plug 'joom/latex-unicoder.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/headerguard'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-bufferline'
 Plug 'danilo-augusto/vim-afterglow'
-Plug 'mephux/bro.vim'
-Plug 'psf/black'
 call plug#end()
 "=============================================================================
 "=============================================================================
@@ -139,20 +117,3 @@ set background=dark
 " --------------------Plugin Configurations-----------------------------------
 " Headerguard configurations. Add header guards to .h and .hpp files.
 autocmd BufNewFile,BufRead *.h,*.hpp HeaderguardAdd
-
-" Nerdtree configurations. 
-" Open NERDTree with control-n.
-map <C-n> :NERDTreeToggle<CR>
-" Close vim if NERDTree is the only window left open.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Latex-unicoder Configurations.
-" Change the default modifier key so as to play nice with our window switching
-" mappings. <C-t> was chosen for tex.
-" let g:unicoder_cancel_normal = 1
-" let g:unicoder_cancel_insert = 1
-" let g:unicoder_cancel_visual = 1
-" nnoremap <C-t> :call unicoder#start(0)<CR>
-" inoremap <C-t> <Esc>:call unicoder#start(1)<CR>
-" vnoremap <C-t> :<C-u>call unicoder#selection()<CR>
-" ----------------------------------------------------------------------------
