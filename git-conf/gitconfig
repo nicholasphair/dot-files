@@ -1,29 +1,30 @@
 [user]
-	name = Nick Phair
-	email = nicholas.phair@ccri.com
+  name = Nick Phair
+  email = nicholas.phair@ccri.com
+	signingkey = 0D15158DAAD465D9
 [core]
-	editor = vim
-	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	excludesfile = ~/.gitignore
-    attributesFile = ~/.gitattributes
+  editor = vim
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = ~/.gitignore
+  attributesFile = ~/.gitattributes
 [color]
-	ui = auto
+  ui = auto
 [color "branch"]
-	current = yellow bold
-	local = green bold
-	remote = cyan bold
+  current = yellow bold
+  local = green bold
+  remote = cyan bold
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 [color "status"]
-	added = green bold
-	changed = yellow bold
-	untracked = red bold
+  added = green bold
+  changed = yellow bold
+  untracked = red bold
 [diff]
-	tool = vimdiff
+  tool = vimdiff
 [diff "tgz"]
   binary = true
   textconv = tar -xvzO -f
@@ -31,16 +32,16 @@
   binary = true
   textconv = zcat
 [difftool]
-	prompt = false
+  prompt = false
 [push]
-	default = nothing
+  default = nothing
 [alias]
-    st = status
-    ci = commit
-    br = branch
-    co = checkout
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true

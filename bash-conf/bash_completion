@@ -285,4 +285,126 @@ complete -F _geomesa-fs geomesa-fs;
 complete -F _geomesa-fs bin/geomesa-fs;
 
 
+       _geomesa-redis(){
+  local cur prev;
+  COMPREPLY=();
+  cur="${COMP_WORDS[COMP_CWORD]}";
+  prev="${COMP_WORDS[COMP_CWORD-1]}";
+
+  if [[ "${COMP_WORDS[1]}" == "help" ]]; then
+    COMPREPLY=( $(compgen -W "create-schema delete-catalog delete-features describe-schema explain export get-sft-config get-type-names ingest keywords manage-partitions remove-schema stats-analyze stats-bounds stats-count stats-histogram stats-top-k help configure classpath scala-console version" ${cur}));
+    return 0;
+  fi;
+
+  case ${COMP_CWORD} in
+    1)
+      COMPREPLY=( $(compgen -W "create-schema delete-catalog delete-features describe-schema explain export get-sft-config get-type-names ingest keywords manage-partitions remove-schema stats-analyze stats-bounds stats-count stats-histogram stats-top-k help configure classpath scala-console version" ${cur}));
+      ;;
+    [2-9] | [1-9][0-9])
+      if [[ "${cur}" =~ ^-[a-zA-Z-]?+$ ]]; then
+        case ${COMP_WORDS[1]} in
+                    create-schema)
+              COMPREPLY=( $(compgen -W "--spec --use-shared-tables --dtg --catalog --feature-name --url" -- ${cur}));
+              return 0;
+              ;;
+                  delete-catalog)
+              COMPREPLY=( $(compgen -W "--url --catalog --force" -- ${cur}));
+              return 0;
+              ;;
+                  delete-features)
+              COMPREPLY=( $(compgen -W "--catalog --cql --url --feature-name" -- ${cur}));
+              return 0;
+              ;;
+                  describe-schema)
+              COMPREPLY=( $(compgen -W "--feature-name --url --catalog" -- ${cur}));
+              return 0;
+              ;;
+                  explain)
+              COMPREPLY=( $(compgen -W "--hints --url --cql --feature-name --index --attributes --catalog" -- ${cur}));
+              return 0;
+              ;;
+                  export)
+              COMPREPLY=( $(compgen -W "--hints --catalog --feature-name --no-header --max-features --gzip --attributes --output --output-format --index --url --cql" -- ${cur}));
+              return 0;
+              ;;
+                  get-sft-config)
+              COMPREPLY=( $(compgen -W "--concise --feature-name --catalog --format --exclude-user-data --url" -- ${cur}));
+              return 0;
+              ;;
+                  get-type-names)
+              COMPREPLY=( $(compgen -W "--catalog --url" -- ${cur}));
+              return 0;
+              ;;
+                  ingest)
+              COMPREPLY=( $(compgen -W "--catalog --src-list --run-mode --threads --converter --url --split-max-size --input-format --force --converter-error-mode --no-tracking --spec --feature-name" -- ${cur}));
+              return 0;
+              ;;
+                  keywords)
+              COMPREPLY=( $(compgen -W "--url --remove --removeAll --add --catalog --list --feature-name" -- ${cur}));
+              return 0;
+              ;;
+                  manage-partitions)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  remove-schema)
+              COMPREPLY=( $(compgen -W "--force --feature-name --url --catalog --pattern" -- ${cur}));
+              return 0;
+              ;;
+                  stats-analyze)
+              COMPREPLY=( $(compgen -W "--catalog --url --feature-name" -- ${cur}));
+              return 0;
+              ;;
+                  stats-bounds)
+              COMPREPLY=( $(compgen -W "--url --attributes --cql --no-cache --feature-name --catalog" -- ${cur}));
+              return 0;
+              ;;
+                  stats-count)
+              COMPREPLY=( $(compgen -W "--catalog --cql --feature-name --no-cache --url" -- ${cur}));
+              return 0;
+              ;;
+                  stats-histogram)
+              COMPREPLY=( $(compgen -W "--feature-name --attributes --bins --no-cache --cql --url --catalog" -- ${cur}));
+              return 0;
+              ;;
+                  stats-top-k)
+              COMPREPLY=( $(compgen -W "--catalog --cql --attributes --no-cache --url --feature-name" -- ${cur}));
+              return 0;
+              ;;
+                  help)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  configure)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  classpath)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  scala-console)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+                  version)
+              COMPREPLY=( $(compgen -W "" -- ${cur}));
+              return 0;
+              ;;
+              esac;
+      else
+        compopt -o filenames -o nospace;
+        COMPREPLY=( $(compgen -f "$2") );
+      fi;
+      return 0;
+      ;;
+    *)
+      COMPREPLY=();
+      ;;
+  esac;
+};
+complete -F _geomesa-redis geomesa-redis;
+complete -F _geomesa-redis bin/geomesa-redis;
+
+
        

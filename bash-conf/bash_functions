@@ -1,3 +1,8 @@
+#!/bin/bash
+ymln() {
+ ln -s $1 $(basename -s .template $1).yaml
+}
+
 startvm() {
     vboxmanage startvm ubuntu --type headless
 }
@@ -23,6 +28,7 @@ savevm() {
     vboxmanage controlvm ubuntu savestate
 }
 
+# TODO (nphair): Replace the head | tail bit with sed -n '1p'
 docker-exec-mru() {
     docker ps | head -2 | tail -1 | awk '{ print $1 }' | xargs -o -I{} docker exec -it {} /bin/bash
 }
@@ -44,27 +50,12 @@ nick-mode() {
     bind -f  ~/.inputrc
 }
 
+popTempD() {
+  TMP="$(dirs -1)" 
+  popd
+  rm -rf ${TMP}
+}
 
-#pushd() {
-#  echo "my func"
-#  if [ $# -eq 0 ]; then
-#    DIR="${HOME}"
-#  else
-#    DIR="$1"
-#  fi
-#
-#  builtin pushd "${DIR}" > /dev/null
-#}
-#
-#pushd_builtin() {
-#  builtin pushd > /dev/null
-#}
-#
-#popd() {
-#  builtin popd > /dev/null
-#}
-#
-#
-#alias cd='pushd'
-#alias back='popd'
-#alias flip='pushd_builtin'
+mkbk() {
+  cp ${1}{,.bak}
+}

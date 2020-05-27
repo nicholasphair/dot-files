@@ -1,6 +1,11 @@
 alias py="python"
 alias py3="python3"
-alias ls='ls -GFh'
+alias ls='ls -Fh'
 alias stat="stat -x"
-alias dirs="dirs -v -l"
+#alias dirs="dirs -v -l"
 alias xclip="xclip -selection c"
+alias cdd="cd /opt/devel"
+alias cdu="cd /opt/devel/optix-future/optix-utils"
+alias kpcli="kpcli --kdb=/home/nphair/.private/keepassx.kdbx"
+alias pusht="pushd $(mktemp -d)"
+alias popt="popTempD"
