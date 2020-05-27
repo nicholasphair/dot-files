@@ -1,8 +1,13 @@
 # Set path.
 PATH=$HOME/bin/:$PATH    # Directory for any scripts we create.
-PATH=$PATH:/opt/bin
-PATH=$PATH:/usr/local/opt/    # coreutils export PATH
+PATH=$PATH:/opt/bin/
+PATH=$PATH:/usr/local/opt/                   # coreutils export PATH
+PATH=$PATH:~/.cargo/bin
+
 export PATH
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
+
 
 #GIT_PROMPT_ONLY_IN_REPO=1
 #source ~/.bash-git-prompt/gitprompt.sh

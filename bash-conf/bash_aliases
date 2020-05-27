@@ -4,3 +4,5 @@ alias ls='ls -GFh'
 alias stat="stat -x"
 alias dirs="dirs -v -l"
 alias xclip="xclip -selection c"
+alias cdd="cd /opt/devel/"
+alias cds="cd /opt/uva/"
