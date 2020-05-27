@@ -10,12 +10,11 @@ set bell-style none
 # --------------------------- Key Bindings ------------------------------------
 # Command mode mappings follow.
 set keymap vi-command
-Control-l: clear-screen
-";;": clear-screen
+"jl": clear-screen
 "v": ""
 
 # Insert mode mappings follow.
 set keymap vi-insert
 Control-l: clear-screen
-";;": clear-screen
+"jl": clear-screen
 "jk": "\e"
