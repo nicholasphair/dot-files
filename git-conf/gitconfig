@@ -36,3 +36,5 @@
     ci = commit
     br = branch
     co = checkout
+[pull]
+	rebase = false
