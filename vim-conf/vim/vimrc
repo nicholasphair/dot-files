@@ -39,6 +39,10 @@ set backspace=indent,eol,start
 " Choose to hide a buffer instead of closing it on :edit.
 set hidden
 
+" Autosign our `TODO's`
+inoreabbrev TODO: TODO (nphair):
+inoreabbrev NOTE: NOTE (nphair):
+
 " Map escape to jk.
 inoremap jk <Esc>`^
 
@@ -46,6 +50,11 @@ inoremap jk <Esc>`^
 " inoremap <S-Tab> <C-V><Tab>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+
+" Map capital versions to eol (no \n) included.
+nnoremap C c$
+nnoremap D d$
+nnoremap Y y$
 
 " Autocomplete comments
 set formatoptions+=r
@@ -68,7 +77,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Folding stuff
-set foldmethod=indent
+" set foldmethod=indent
 set nofoldenable
 
 " Bash-like autocompletion.
@@ -106,6 +115,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-bufferline'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'danilo-augusto/vim-afterglow'
 call plug#end()
 "=============================================================================
@@ -117,3 +127,5 @@ set background=dark
 " --------------------Plugin Configurations-----------------------------------
 " Headerguard configurations. Add header guards to .h and .hpp files.
 autocmd BufNewFile,BufRead *.h,*.hpp HeaderguardAdd
+autocmd BufNewFile,BufRead */config	setfiletype sshconfig
+autocmd BufNewFile,BufRead *.py set shiftwidth=4

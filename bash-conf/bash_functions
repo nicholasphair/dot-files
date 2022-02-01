@@ -24,13 +24,25 @@ savevm() {
 }
 
 docker-exec-mru() {
-    docker ps -a | head -2 | tail -1 | awk '{ print $1 }' | xargs -o -I{} docker exec -it {} /bin/bash
+    docker ps | head -2 | tail -1 | awk '{ print $1 }' | xargs -o -I{} docker exec -it {} /bin/bash
 }
 
 docker-rm-mru() {
     docker ps -a | head -2 | tail -1 | awk '{ print $1 }' | xargs -I{} docker rm {}
 }
 
+docker-rmi-repo() {
+    REPO=$1
+    docker ps -a | grep $REPO | awk '{ print $1 }' | xargs -I{} docker rmi {}
+}
+
+jim-mode() {
+    bind -f  ~/.jimputrc
+}
+
+nick-mode() {
+    bind -f  ~/.inputrc
+}
 
 
 #pushd() {

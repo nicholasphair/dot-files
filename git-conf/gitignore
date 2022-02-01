@@ -3,3 +3,5 @@
 *.class
 *.log
 **/.bak
+*/local-registry/*
+docker-compose.yml
