@@ -26,6 +26,7 @@ declare -a CONFIGS=(
   "inputrc"
   "pythonrc"
   "screenrc"
+  "tmux.conf"
   "vim"
   "wgetrc"
 )
