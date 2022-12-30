@@ -3,6 +3,7 @@
 # For editing use vi, not emacs.
 set editing-mode vi
 set completion-ignore-case on
+#set mark-directories Off
 
 # Turn off the annoying bell.
 set bell-style none
