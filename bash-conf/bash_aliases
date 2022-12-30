@@ -1,8 +1,8 @@
 alias py="python"
 alias py3="python3"
 alias ls='ls -GFh'
-alias stat="stat -x"
-alias dirs="dirs -v -l"
 alias xclip="xclip -selection c"
 alias cdd="cd /opt/devel/"
-alias cds="cd /opt/uva/"
+alias cds="cd /opt/devel/uva/"
+alias cdtip="cd /opt/cs6620/"
+alias sudoedit="sudo -e"
