@@ -62,7 +62,7 @@ symlink() {
     for config in "${CONFIGS[@]}"; do
       if [ "${dot_filename}" = "${config}" ]; then
         ln -fs "${PWD}/${dot_file}" "${HOME}/.${config}"
-	# TODO: ln -h apparently not available on ubunut...
+        # TODO: ln -h apparently not available on ubuntu...
         #ln -fhs "${PWD}/${dot_file}" "${HOME}/.${config}"
         log "${HOME}/.${config} has been symlinked to ${PWD}/${dot_file}"
       fi
