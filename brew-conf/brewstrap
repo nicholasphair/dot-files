@@ -11,7 +11,6 @@ brew tap caskroom/cask
 brew tap aws/tap
 
 # Programming Languages
-brew cask install java
 brew install node
 brew install qt
 
@@ -35,9 +34,8 @@ brew xmlstarlet
 brew install aws-sam-cli
 
 # Application.
-brew cask install google-chrome
-brew cask install dashlane
-brew cask install spectacle
-brew cask install xquartz
-brew cask install amazon-music
-brew cask install vlc
+brew install --cask google-chrome
+brew install --cask dashlane
+brew install --cask rectangle
+brew install --cask xquartz
+brew install --cask vlc
