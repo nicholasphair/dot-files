@@ -1,11 +1,13 @@
 [user]
 	name = Nick Phair
 	email = nickphair@gmail.com
+	signingkey = F6ED04E98D05ADBD
 [core]
 	editor = vim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
+	autocrlf = input
 [color]
 	ui = auto
 [color "branch"]
@@ -38,3 +40,14 @@
     co = checkout
 [pull]
 	rebase = false
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
