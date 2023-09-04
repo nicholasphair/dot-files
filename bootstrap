@@ -19,6 +19,8 @@ SCRATCHPAD_DIR="${HOME}/Scratchpad"
 LOG="${HOME}/bootstrap.log"
 VERBOSE=false
 
+RECTANGLE_CONFIG_DIR="${HOME}/Library/Application Support/Rectangle"
+
 declare -a CONFIGS=(
   "bash_aliases" "bash_completion" "bashrc" "bash_profile" 
   "gitignore" "gitconfig"
@@ -39,6 +41,7 @@ build_dirs() {
   mkdir -p "${SCRATCHPAD_DIR}"
   mkdir -p "${HOME}/.bash_completion.d"
   mkdir -p "/opt"
+  mkdir -p "$RECTANGLE_CONFIG_DIR"
 }
 
 
@@ -91,6 +94,19 @@ backup() {
 # Call the script to build brew, tap the caskroom, and fetch our packages.
 build_brew() {
   ./"${PWD}/brew-conf/brewstrap"
+}
+
+configure_rectangle() {
+  src="./misc-conf/rectangle_config.json"
+  target="${RECTANGLE_CONFIG_DIR}/RectangleConfig.json"
+
+  if [ -e "${target}" -o -L "${target}" ]; then
+    mv "${target}" "${BACKUP_DIR}"
+    log "The current version of ${target} has been backed up to the ${BACKUP_DIR} directory."
+  fi
+
+  ln -fs ${src} "${target}"
+  log "${src} has been symlinked to ${target}"
 }
 
 
