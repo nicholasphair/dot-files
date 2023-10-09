@@ -9,25 +9,34 @@ brew tap sdkman/tap
 brew tap 1password/tap
 
 # Packages.
+brew install aspell
 brew install aws-sam-cli
 brew install awscli
 brew install bash
 brew install bash-completion
-brew install docker
 brew install gh
 brew install git
+brew install git-lfs
+brew install htop
+brew install imagemagick
 brew install jq
 brew install node
+brew install pam-reattach  # For tmux touch auth.
 brew install pandoc
+brew install python-tk
 brew install pyenv
+brew install rbenv ruby-build  # Ruby for personal site.
 brew install sdkman-cli
 brew install tmux
+brew install tree
 brew install vim
+brew install wget
 
 # Casks.
 brew install --cask 1password
 brew install --cask 1password-cli
 brew install --cask clion
+brew install --cask docker
 brew install --cask google-chrome
 brew install --cask intellij-idea
 brew install --cask iterm2
