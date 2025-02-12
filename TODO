@@ -12,3 +12,8 @@ to ditch python and move to a bash script.
 ---
 This will automatically call pluginstall and quit.
 vim +silent +PlugInstall +qall
+
+
+--
+
+proably shoud define a lifecycle. Command to be run at different stages. (e.g., post package install)

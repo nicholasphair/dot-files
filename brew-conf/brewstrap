@@ -1,5 +1,19 @@
 #!/bin/sh
 
+usage() {
+  echo "Usage: $0 [--no-casks]"
+  echo "  --no-casks   Skip installing cask applications"
+  echo "  --help, -h   Show this help message"
+  exit 0
+}
+
+# Process args.
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+  usage
+fi
+
+[ "$1" = "--no-casks" ] && NO_CASKS=true || NO_CASKS=false
+
 echo "Installing brew..."
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -32,6 +46,9 @@ brew install tree
 brew install vim
 brew install wget
 
+# Exit if --no-casks was provided.
+$NO_CASKS && exit 0
+
 # Casks.
 brew install --cask 1password
 brew install --cask 1password-cli
@@ -47,3 +64,4 @@ brew install --cask visual-studio-code
 brew install --cask vlc
 brew install --cask xquartz
 brew install --cask zoom
+

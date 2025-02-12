@@ -42,6 +42,7 @@ set hidden
 " Autosign our `TODO's`
 inoreabbrev TODO: TODO (nphair):
 inoreabbrev NOTE: NOTE (nphair):
+inoreabbrev NB: NB (nphair):
 
 " Map escape to jk.
 inoremap jk <Esc>`^
@@ -65,6 +66,7 @@ let mapleader = " "
 " Run the selected code through the interpreter
 xnoremap <leader>j :w !julia6<cr>
 xnoremap <leader>p :w !python<cr>
+xnoremap <leader>b :w !bash<cr>
 
 " Split to the right and below and hop over to the newly split window.
 set splitbelow
@@ -92,9 +94,6 @@ set visualbell
 " Highlight the current line.
 set cursorline
 
-" Sign our todos and notes.
-ab TODO: TODO: (nphair)
-ab NOTE: NOTE: (nphair)
 "=============================================================================
 "                     Using vim-plug to manage our plugins                    
 "=============================================================================
@@ -108,7 +107,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'gabrielelana/vim-markdown'
+" Plug 'gabrielelana/vim-markdown'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-scripts/headerguard'
 Plug 'tpope/vim-surround'

@@ -2,3 +2,4 @@ source ~/.vim/vimrc
 set surround
 set commentary
 set exchange
+set ideajoin
