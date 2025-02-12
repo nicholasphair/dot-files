@@ -27,7 +27,7 @@ brew install aspell
 brew install aws-sam-cli
 brew install awscli
 brew install bash
-brew install bash-completion
+brew install bash-completion@2
 brew install gh
 brew install git
 brew install git-lfs
